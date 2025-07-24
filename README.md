@@ -1,4 +1,5 @@
 # Google-Crawl-My-Repo
+Don't forget to activate gh-pages in the settings of this repository!
 
 ## Purpose
 This project sets up a dummy website using GitHub Pages, designed to be crawled by Google. It includes:
