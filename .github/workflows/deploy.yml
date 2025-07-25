@@ -49,9 +49,6 @@ jobs:
           echo '  <url>' >> public/sitemap.xml
           echo '    <loc>https://github.com/${{ github.repository }}</loc>' >> public/sitemap.xml
           echo '  </url>' >> public/sitemap.xml
-          echo '  <url>' >> public/sitemap.xml
-          echo '    <loc>https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/</loc>' >> public/sitemap.xml
-          echo '  </url>' >> public/sitemap.xml
           echo '</urlset>' >> public/sitemap.xml
       - name: Generate robots.txt
         run: |
