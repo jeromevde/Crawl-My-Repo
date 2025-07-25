@@ -18,10 +18,12 @@ jobs:
         uses: actions/configure-pages@v5
       - name: Set REPO_URL env variable
         run: echo "REPO_URL=https://github.com/${{ github.repository }}" >> $GITHUB_ENV
-      - name: Copy README.md to public folder
+      - name: Copy README.md and Google verification files to public folder
         run: |
           mkdir -p public
           cp README.md public/README.md
+          shopt -s nullglob
+          for f in .github/google*.html; do cp "$f" public/; done
       - name: Generate index.html with repo URL
         run: |
           echo '<!DOCTYPE html>' > public/index.html
