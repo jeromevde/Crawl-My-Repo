@@ -3,10 +3,18 @@
 
 This project sets up a dummy website using GitHub Pages, designed to be crawled by Google.
 
+
 ## Structure
 - All site files are in the `public` folder.
 - The workflow copies `README.md` into `public/README.md` for display on the homepage.
 - The homepage fetches and renders the README using JavaScript and the Marked library.
+- The GitHub repository URL is automatically detected from the workflow context and injected into the homepage. You do not need to manually set or edit the repo URL anywhere.
+
+## Modular Usage
+To use this setup in any repo:
+1. Copy the `.github` folder and `public` folder into your repository.
+2. The workflow will automatically detect your repo URL and inject it into the homepage.
+3. No manual changes to the repo URL are needed.
 
 ## How to Verify Ownership with Google Search Console
 1. Go to [Google Search Console](https://search.google.com/search-console/welcome).

@@ -16,9 +16,48 @@ jobs:
       - uses: actions/checkout@v4
       - name: Setup Pages
         uses: actions/configure-pages@v5
+      - name: Set REPO_URL env variable
+        run: echo "REPO_URL=https://github.com/${{ github.repository }}" >> $GITHUB_ENV
       - name: Copy README.md to public folder
         run: |
-          cp README.md /.github/public/README.md
+          mkdir -p public
+          cp README.md public/README.md
+      - name: Generate index.html with repo URL
+        run: |
+          echo '<!DOCTYPE html>' > public/index.html
+          echo '<html lang="en">' >> public/index.html
+          echo '<head>' >> public/index.html
+          echo '  <meta charset="UTF-8">' >> public/index.html
+          echo '  <meta name="viewport" content="width=device-width, initial-scale=1.0">' >> public/index.html
+          echo '  <title>Welcome to this website used to redirect Google Crawlers some interesting code</title>' >> public/index.html
+          echo '  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>' >> public/index.html
+          echo '  <style>body { font-family: Arial, sans-serif; margin: 2em; } #readme { margin-top: 2em; }</style>' >> public/index.html
+          echo '</head>' >> public/index.html
+          echo '<body>' >> public/index.html
+          echo "  <a href='$REPO_URL'>Visit the GitHub Repo</a>" >> public/index.html
+          echo '  <hr>' >> public/index.html
+          echo '  <div id="readme"><em>Loading README...</em></div>' >> public/index.html
+          echo '<script>' >> public/index.html
+          echo "fetch('README.md').then(response => response.text()).then(md => {document.getElementById('readme').innerHTML = marked.parse(md);}).catch(() => {document.getElementById('readme').innerHTML = '<em>Could not load README.md</em>';});" >> public/index.html
+          echo '</script>' >> public/index.html
+          echo '</body>' >> public/index.html
+          echo '</html>' >> public/index.html
+      - name: Generate sitemap.xml
+        run: |
+          echo '<?xml version="1.0" encoding="UTF-8"?>' > public/sitemap.xml
+          echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' >> public/sitemap.xml
+          echo '  <url>' >> public/sitemap.xml
+          echo '    <loc>https://github.com/${{ github.repository }}</loc>' >> public/sitemap.xml
+          echo '  </url>' >> public/sitemap.xml
+          echo '  <url>' >> public/sitemap.xml
+          echo '    <loc>https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/</loc>' >> public/sitemap.xml
+          echo '  </url>' >> public/sitemap.xml
+          echo '</urlset>' >> public/sitemap.xml
+      - name: Generate robots.txt
+        run: |
+          echo 'User-agent: *' > public/robots.txt
+          echo 'Allow: /' >> public/robots.txt
+          echo 'Sitemap: https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }}/sitemap.xml' >> public/robots.txt
       - name: Upload site
         uses: actions/upload-pages-artifact@v3
         with:
