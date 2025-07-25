@@ -21,7 +21,7 @@ jobs:
       - name: Copy README.md and Google verification files to public folder
         run: |
           mkdir -p public
-          cp README.md public/README.md
+          [ -f README.md ] && cp README.md public/README.md || true
           shopt -s nullglob
           for f in .github/google*.html; do cp "$f" public/; done
       - name: Generate index.html with repo URL
