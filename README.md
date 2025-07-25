@@ -31,4 +31,7 @@ This project sets up a dummy website using GitHub Pages, designed to be crawled 
 - `.github/workflows/deploy.yml`: GitHub Actions workflow for deployment
 
 ---
-*Happy crawling!*
+
+## Verify when you were last crawled
+
+[Google Url Inspection Tool](https://support.google.com/webmasters/answer/9012289?hl=en)
