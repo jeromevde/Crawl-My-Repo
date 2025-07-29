@@ -1,13 +1,11 @@
 
-# Google-Crawl-My-Repo
 
-This project sets up a dummy website using GitHub Pages, designed to be crawled by Google.
-
+Set up a dummy website using GitHub Pages to prove ownership and request crawling by google
 
 ## How to use
 - Add the `.github` folder to your repo
-- Verify ownership at google
-- Submit a sitemap to Google
+1. Verify ownership at google
+2. Submit a sitemap to Google
 
 
 ## Verify ownership
