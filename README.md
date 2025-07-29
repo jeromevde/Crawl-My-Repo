@@ -3,9 +3,9 @@
 Set up a dummy website using GitHub Pages to prove ownership and request crawling by google
 
 ## How to use
-- Add the `.github` folder to your repo
-1. Verify ownership at google
-2. Submit a sitemap to Google
+* Add the `.github` folder to your repo
+* Verify ownership at google
+* Submit a sitemap to Google
 
 
 ## Verify ownership
