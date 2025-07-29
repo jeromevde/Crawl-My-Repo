@@ -37,7 +37,6 @@ To test the site locally and see the README rendered:
 ```bash
 mkdir -p public
 cp README.md public/README.md
-cp google-site-verification.html public/google-site-verification.html
 python3 -m http.server --directory public 8000
 ```
 
